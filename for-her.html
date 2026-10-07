@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>your website (you asked)</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;800&family=Reenie+Beanie&family=Shrikhand&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#F8CFDB; --surface:#FFF5F8; --ink:#4A0A26; --ink-soft:#7A2E4D;
+  --accent:#C2185B; --accent-deep:#8C0F40; --on-accent:#FFFFFF;
+  --line:rgba(74,10,38,.22);
+  --candy-ink:#4A0A26; --stamp:#B3154F;
+  --pink:#F9A8C0; --pink-d:#E0789B;
+  --mint:#B5E3CC; --mint-d:#7FC4A2;
+  --lemon:#F7E48B; --lemon-d:#DCC24E;
+  --lilac:#CFBCEF; --lilac-d:#A58BDB;
+  --white:#FFF5F8; --white-d:#E6C3CF;
+  --display:"Shrikhand","Cooper Black",Georgia,serif;
+  --body:"Hanken Grotesk","Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+  --hand:"Reenie Beanie","Bradley Hand","Segoe Print","Comic Sans MS",cursive;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#2B0B1D; --surface:#3E132A; --ink:#FDE7EE; --ink-soft:#E5B3C5;
+    --accent:#FF6A9F; --accent-deep:#C73A72; --on-accent:#2B0B1D;
+    --line:rgba(253,231,238,.24);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#2B0B1D; --surface:#3E132A; --ink:#FDE7EE; --ink-soft:#E5B3C5;
+  --accent:#FF6A9F; --accent-deep:#C73A72; --on-accent:#2B0B1D;
+  --line:rgba(253,231,238,.24);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  min-height:100%;margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--body);font-size:1.0625rem;line-height:1.55;
+  display:flex;align-items:center;justify-content:center;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+main{width:100%;max-width:68rem;padding:2rem 1.25rem 2.5rem;text-align:center}
+.screen{max-width:30rem;margin-inline:auto}
+[hidden]{display:none !important}
+
+h1,h2{font-family:var(--display);font-weight:400;line-height:1.08;margin:0 0 1rem;text-wrap:balance}
+h1{font-size:clamp(2.6rem,11vw,3.9rem)}
+h2{font-size:clamp(1.9rem,8vw,2.5rem)}
+h1:focus,h2:focus{outline:none}
+p{margin:0 0 1rem}
+.lede{color:var(--ink-soft);max-width:26rem;margin-inline:auto}
+
+.screen{animation:enter .3s ease both}
+@keyframes enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* hero hearts */
+.hearts{display:block;width:100%;max-width:21rem;height:auto;margin:0 auto 1.25rem;user-select:none;-webkit-user-select:none}
+.stamp{font-family:var(--body);font-weight:800;font-size:17px;text-anchor:middle;fill:var(--stamp);letter-spacing:.05em}
+.stamp.big{font-size:15px}
+.f-pink{fill:var(--pink)}.f-pink-d{fill:var(--pink-d)}
+.f-mint{fill:var(--mint)}.f-mint-d{fill:var(--mint-d)}
+.f-lemon{fill:var(--lemon)}.f-lemon-d{fill:var(--lemon-d)}
+.f-lilac{fill:var(--lilac)}.f-lilac-d{fill:var(--lilac-d)}
+.f-white{fill:var(--white)}.f-white-d{fill:var(--white-d)}
+.pop{transform-box:fill-box;transform-origin:center;animation:pop .55s cubic-bezier(.3,1.5,.5,1) both}
+.pop.d1{animation-delay:.05s}.pop.d2{animation-delay:.15s}.pop.d3{animation-delay:.25s}.pop.d4{animation-delay:.35s}.pop.d5{animation-delay:.5s}
+@keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+
+/* buttons */
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible,input:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;min-height:3.25rem;
+  padding:.75rem 1.7rem;border:0;border-radius:999px;background:var(--accent);color:var(--on-accent);
+  font-weight:800;box-shadow:0 5px 0 var(--accent-deep);transition:transform .08s,box-shadow .08s;
+}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--accent-deep)}
+.candy{
+  --c:var(--pink);--cd:var(--pink-d);
+  display:flex;align-items:center;justify-content:center;width:100%;min-height:3.5rem;
+  padding:.8rem 1.1rem;border:0;border-radius:1.1rem;background:var(--c);color:var(--candy-ink);
+  font-weight:600;box-shadow:0 5px 0 var(--cd);transition:transform .08s,box-shadow .08s,opacity .2s;
+}
+.candy:active:not(:disabled){transform:translateY(4px);box-shadow:0 1px 0 var(--cd)}
+.candy:disabled{cursor:default}
+.candy:disabled:not(.picked){opacity:.4}
+.c-mint{--c:var(--mint);--cd:var(--mint-d)}
+.c-lemon{--c:var(--lemon);--cd:var(--lemon-d)}
+.c-lilac{--c:var(--lilac);--cd:var(--lilac-d)}
+.c-pink{--c:var(--pink);--cd:var(--pink-d)}
+.link{background:none;border:0;padding:.75rem 1rem;color:var(--ink-soft);font-weight:600;text-decoration:underline;text-underline-offset:.2em}
+
+.answers{display:grid;gap:.95rem;margin-top:1.5rem}
+.grid2{grid-template-columns:1fr 1fr}
+.reply{min-height:3.3em;margin:1.4rem 0 .6rem;font-weight:600}
+.next{margin-top:.25rem}
+
+/* progress */
+.progress{display:flex;align-items:center;justify-content:center;gap:.45rem;margin-bottom:1.75rem;color:var(--ink-soft);font-size:.9375rem;font-weight:600}
+.pip{width:1.15rem;height:1.05rem;fill:var(--line);transition:fill .25s}
+.pip.on{fill:var(--accent)}
+.progress span{margin-left:.4rem}
+
+/* dial */
+.meter{margin-top:1.25rem}
+.num{font-family:var(--display);font-size:4.2rem;line-height:1;margin:0}
+.lab{color:var(--ink-soft);min-height:1.6em;margin:.3rem 0 .8rem}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:2.75rem;background:transparent;margin:0 0 1.1rem;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:1rem;border-radius:999px;background:linear-gradient(90deg,var(--mint),var(--lemon),var(--pink),var(--accent))}
+input[type=range]::-moz-range-track{height:1rem;border-radius:999px;background:linear-gradient(90deg,var(--mint),var(--lemon),var(--pink),var(--accent))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:2.25rem;height:2.25rem;margin-top:-.625rem;border-radius:50%;background:var(--surface);border:4px solid var(--ink)}
+input[type=range]::-moz-range-thumb{width:1.75rem;height:1.75rem;border-radius:50%;background:var(--surface);border:4px solid var(--ink)}
+input[type=range]:disabled{cursor:default;opacity:1}
+
+/* dodge */
+.dodge{position:relative;height:13.5rem;margin-top:1.5rem}
+.dodge .yes{position:absolute;top:0;right:calc(50% + .55rem);min-width:6rem}
+.dodge .no{position:absolute;top:0;left:calc(50% + .55rem);width:auto;min-width:6rem;min-height:3.25rem;white-space:nowrap;transition:left .22s ease,top .22s ease,transform .08s,box-shadow .08s}
+
+/* scratch card */
+.scratch{position:relative;height:10.5rem;margin:1.5rem 0 .4rem;border-radius:1.25rem;overflow:hidden;background:var(--surface);box-shadow:0 5px 0 var(--lilac-d)}
+.prize{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem}
+.prize-big{font-family:var(--display);font-size:clamp(1.75rem,7.6vw,2.25rem);line-height:1.1;margin:0 0 .35rem}
+.prize-small{margin:0;color:var(--ink-soft);font-weight:600}
+#foil{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab;transition:opacity .5s}
+#foil.gone{opacity:0;pointer-events:none}
+.picks{margin-top:1.4rem}
+.picks p{font-weight:600;margin-bottom:0}
+.picks .answers{margin-top:1rem}
+
+/* ticket */
+.ticket{position:relative;background:var(--surface);border-radius:1.25rem;text-align:left;margin:1.9rem 0 1.75rem;rotate:-1.6deg}
+.ticket-main{padding:1.4rem 1.5rem 1.2rem}
+.ticket-kicker{margin:0;color:var(--ink-soft);font-weight:600}
+.ticket-title{font-family:var(--display);font-size:clamp(2rem,9vw,2.6rem);line-height:1.08;margin:.1rem 0 .5rem}
+.ticket-line{margin:0;color:var(--ink-soft)}
+.ticket-stub{position:relative;margin:0;padding:1.1rem 1.5rem 1.35rem;border-top:2px dashed var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem}
+.ticket-stub::before,.ticket-stub::after{content:"";position:absolute;top:-.75rem;width:1.4rem;height:1.4rem;border-radius:50%;background:var(--bg)}
+.ticket-stub::before{left:-.7rem}.ticket-stub::after{right:-.7rem}
+.ticket-stub dt{font-size:.8125rem;color:var(--ink-soft)}
+.ticket-stub dd{margin:0;font-weight:800}
+.msg{background:var(--surface);border-radius:1.1rem 1.1rem 1.1rem .3rem;padding:1rem 1.2rem;text-align:left;font-weight:600;margin:0 0 1.25rem;user-select:all;-webkit-user-select:all}
+.actions{display:flex;flex-direction:column;align-items:center;gap:.4rem}
+
+/* heart rain */
+.rain{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:5}
+.rain svg{position:absolute;top:-3rem;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(115vh) rotate(var(--r,180deg))}}
+
+/* handwritten bits */
+body{transition:background-color .5s,color .5s}
+.hand{font-family:var(--hand);font-size:1.75rem;line-height:1.05;color:var(--accent);margin:0}
+.so{margin:-.35rem 0 .9rem;rotate:-3deg}
+.cta{position:relative;display:inline-block;margin-bottom:3.2rem}
+.press{position:absolute;top:calc(100% + .15rem);left:58%;display:flex;align-items:flex-end;gap:.25rem;white-space:nowrap;rotate:-4deg}
+.press svg{flex:none;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;margin-bottom:.35rem}
+.dare{text-align:left;rotate:-2deg;margin:0 0 -.15rem .2rem}
+.change{margin:0 0 1.1rem;rotate:1.5deg}
+.notes{margin-top:1.7rem}
+.ps{rotate:-1.5deg;margin-bottom:.55rem}
+.sig{rotate:1deg;color:var(--ink-soft)}
+
+/* a little crooked on purpose */
+.answers .candy:nth-child(odd){rotate:-.7deg}
+.answers .candy:nth-child(even){rotate:.6deg}
+.scratch{rotate:-1.1deg}
+.msg{rotate:.8deg}
+.ticket::before{content:"";position:absolute;top:-.75rem;left:50%;width:5.5rem;height:1.5rem;background:var(--lemon);opacity:.9;transform:translateX(-50%) rotate(-5deg);border-radius:2px}
+
+/* colour picker */
+.swatches{display:flex;flex-wrap:wrap;justify-content:center;gap:.9rem .7rem;margin-top:1.5rem}
+.sw{display:flex;flex-direction:column;align-items:center;gap:.4rem;width:4.1rem;padding:.3rem 0;border:0;border-radius:.6rem;background:none;font-size:.875rem;font-weight:600;color:var(--ink-soft)}
+.sw i{display:block;width:3.1rem;height:3.1rem;background:var(--sw);border-radius:47% 53% 50% 50%/54% 46% 54% 46%;box-shadow:0 0 0 3px var(--surface);transition:transform .15s}
+.sw:nth-child(even) i{border-radius:53% 47% 45% 55%/48% 55% 45% 52%}
+.sw[aria-pressed="true"]{color:var(--ink)}
+.sw[aria-pressed="true"] i{transform:scale(1.1);box-shadow:0 0 0 3px var(--surface),0 0 0 6px var(--ink)}
+
+/* her colour takes over the page */
+:root[data-pick]{
+  --bg:oklch(var(--lb,.885) var(--cb,.055) var(--h));
+  --surface:oklch(.975 .014 var(--h));
+  --ink:oklch(.26 .085 var(--h));
+  --ink-soft:oklch(.43 .09 var(--h));
+  --accent:oklch(.5 var(--ca,.19) var(--ha,var(--h)));
+  --accent-deep:oklch(.38 .15 var(--ha,var(--h)));
+  --on-accent:#fff;
+  --line:oklch(.26 .085 var(--h) / .22);
+}
+:root[data-pick="red"]{--h:22}
+:root[data-pick="purple"]{--h:305}
+:root[data-pick="blue"]{--h:252}
+:root[data-pick="green"]{--h:158;--ca:.13}
+:root[data-pick="yellow"]{--h:98;--lb:.92;--cb:.1;--ha:52;--ca:.15}
+@media (prefers-color-scheme:dark){
+  :root[data-pick]:not([data-theme="light"]){
+    --bg:oklch(.2 .045 var(--h)); --surface:oklch(.27 .055 var(--h)); --ink:oklch(.94 .02 var(--h)); --ink-soft:oklch(.8 .06 var(--h));
+    --accent:oklch(.76 .15 var(--ha,var(--h))); --accent-deep:oklch(.58 .14 var(--ha,var(--h))); --on-accent:oklch(.2 .045 var(--h));
+    --line:oklch(.94 .02 var(--h) / .24);
+  }
+}
+:root[data-pick][data-theme="dark"]{
+  --bg:oklch(.2 .045 var(--h)); --surface:oklch(.27 .055 var(--h)); --ink:oklch(.94 .02 var(--h)); --ink-soft:oklch(.8 .06 var(--h));
+  --accent:oklch(.76 .15 var(--ha,var(--h))); --accent-deep:oklch(.58 .14 var(--ha,var(--h))); --on-accent:oklch(.2 .045 var(--h));
+  --line:oklch(.94 .02 var(--h) / .24);
+}
+:root[data-pick="black"][data-pick]{
+  --bg:#17131A; --surface:#262029; --ink:#F6EFF3; --ink-soft:#CBBECA;
+  --accent:#FF6A9F; --accent-deep:#C73A72; --on-accent:#17131A; --line:rgba(246,239,243,.24);
+}
+
+/* responsive: small phones */
+@media (max-width:22.5rem){
+  body{font-size:1rem}
+  main{padding:1.5rem .9rem 2rem}
+  .num{font-size:3.4rem}
+  .btn{padding:.75rem 1.3rem}
+  .candy{padding:.7rem}
+  .ticket-main{padding:1.15rem 1.1rem 1rem}
+  .ticket-stub{padding:1rem 1.1rem 1.15rem;gap:.5rem}
+  .dodge .yes,.dodge .no{min-width:5.2rem}
+}
+/* tablets and up */
+@media (min-width:40rem){
+  body{font-size:1.125rem}
+  main{padding:3rem 2rem}
+  .screen{max-width:34rem}
+  .hearts{max-width:25rem}
+  h1{font-size:clamp(3.9rem,8vw,4.6rem)}
+  h2{font-size:2.9rem}
+  .candy{min-height:3.9rem}
+  .num{font-size:5rem}
+  .dodge{height:15rem}
+  .scratch{height:12.5rem}
+  .prize-big{font-size:2.6rem}
+}
+/* side-by-side intro on wide screens and landscape phones */
+@media (min-width:60rem), (min-width:36rem) and (max-height:34rem) and (orientation:landscape){
+  #s-intro{max-width:62rem;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);grid-template-rows:1fr auto auto auto auto 1fr;column-gap:clamp(1.5rem,5vw,4.5rem);text-align:left}
+  #s-intro .hearts{grid-column:1;grid-row:1/-1;max-width:none;margin:0;align-self:center}
+  #s-intro h1{grid-column:2;grid-row:2}
+  #s-intro .so{grid-column:2;grid-row:3;justify-self:start}
+  #s-intro .lede{grid-column:2;grid-row:4;margin-inline:0}
+  #s-intro .cta{grid-column:2;grid-row:5;justify-self:start}
+}
+/* desktop */
+@media (min-width:60rem){
+  h1{font-size:clamp(4.2rem,6.2vw,5.6rem)}
+  #s-final{max-width:60rem;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto auto auto 1fr;column-gap:3.5rem;align-items:start;text-align:left}
+  #s-final h2{grid-column:1/-1;text-align:center;margin-bottom:2rem}
+  #s-final .ticket{grid-column:1;grid-row:2/span 4;margin:0}
+  #s-final > p,#s-final .actions,#s-final .notes{grid-column:2}
+  #s-final .actions{align-items:flex-start}
+  #s-final .link{padding-left:0}
+  .ticket-title{font-size:3rem}
+}
+/* short screens */
+@media (max-height:34rem){
+  body{align-items:flex-start}
+  main{padding-top:1.25rem;padding-bottom:1.5rem}
+  .hearts{max-width:13rem;margin-bottom:.75rem}
+  h1{font-size:2.6rem}
+  h2{font-size:2rem}
+  .dodge{height:11rem}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .screen,.pop{animation:none}
+  .dodge .no{transition:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <path id="heart" d="M50 90 C22 68 3 50 3 29 C3 14 14 3 28 3 C38 3 46 8 50 17 C54 8 62 3 72 3 C86 3 97 14 97 29 C97 50 78 68 50 90Z"/>
+  </defs>
+</svg>
+
+<main>
+  <div class="progress" id="progress" hidden>
+    <svg class="pip" viewBox="0 0 100 92" aria-hidden="true"><use href="#heart"/></svg>
+    <svg class="pip" viewBox="0 0 100 92" aria-hidden="true"><use href="#heart"/></svg>
+    <svg class="pip" viewBox="0 0 100 92" aria-hidden="true"><use href="#heart"/></svg>
+    <span id="progress-text">Round 1 of 3</span>
+  </div>
+
+  <!-- Intro -->
+  <section class="screen" id="s-intro">
+    <svg class="hearts" viewBox="0 0 320 212" role="img" aria-label="A pile of candy hearts stamped with: you asked, as if, bold, ok fine, nice try">
+      <g class="pop d1"><g transform="translate(4 8) scale(.7) rotate(-14 50 46)">
+        <use href="#heart" y="6" class="f-mint-d"/><use href="#heart" class="f-mint"/>
+        <text class="stamp" x="50" y="38">AS</text><text class="stamp" x="50" y="57">IF</text>
+      </g></g>
+      <g class="pop d2"><g transform="translate(246 2) scale(.68) rotate(12 50 46)">
+        <use href="#heart" y="6" class="f-white-d"/><use href="#heart" class="f-white"/>
+        <text class="stamp" x="50" y="46">BOLD</text>
+      </g></g>
+      <g class="pop d3"><g transform="translate(236 124) scale(.8) rotate(-7 50 46)">
+        <use href="#heart" y="6" class="f-lilac-d"/><use href="#heart" class="f-lilac"/>
+        <text class="stamp" x="50" y="38">OK</text><text class="stamp" x="50" y="57">FINE</text>
+      </g></g>
+      <g class="pop d4"><g transform="translate(6 132) scale(.74) rotate(9 50 46)">
+        <use href="#heart" y="6" class="f-pink-d"/><use href="#heart" class="f-pink"/>
+        <text class="stamp" x="50" y="38">NICE</text><text class="stamp" x="50" y="57">TRY</text>
+      </g></g>
+      <g class="pop d5"><g transform="translate(72 26) scale(1.75) rotate(-6 50 46)">
+        <use href="#heart" y="5" class="f-lemon-d"/><use href="#heart" class="f-lemon"/>
+        <text class="stamp big" x="50" y="39">YOU</text><text class="stamp big" x="50" y="56">ASKED</text>
+      </g></g>
+    </svg>
+    <h1 tabindex="-1">You asked for a website.</h1>
+    <p class="hand so">so i made one. no take-backs.</p>
+    <p class="lede">I honestly couldn't tell if you were joking. I made it anyway. There's a small game in here, and you get something if you win.</p>
+    <div class="cta">
+      <button class="btn" id="play">Start</button>
+      <span class="hand press" aria-hidden="true">
+        <svg viewBox="0 0 44 40" width="40" height="36"><path d="M40 36C30 34 14 28 8 8"/><path d="M3 17L8 7l9 6"/></svg>
+        press it
+      </span>
+    </div>
+  </section>
+
+  <!-- Colour -->
+  <section class="screen" id="s-color" hidden>
+    <h2 tabindex="-1">First, a small problem.</h2>
+    <p class="lede">This whole site is about you and I don't know your favourite colour yet. I guessed pink. Fix it for me.</p>
+    <div class="swatches" role="group" aria-label="Pick your favourite colour">
+      <button class="sw" data-k="pink" style="--sw:#F58FB0" aria-pressed="false"><i></i>Pink</button>
+      <button class="sw" data-k="red" style="--sw:#E0434F" aria-pressed="false"><i></i>Red</button>
+      <button class="sw" data-k="purple" style="--sw:#A98BE0" aria-pressed="false"><i></i>Purple</button>
+      <button class="sw" data-k="blue" style="--sw:#6FA3EF" aria-pressed="false"><i></i>Blue</button>
+      <button class="sw" data-k="green" style="--sw:#6FC79A" aria-pressed="false"><i></i>Green</button>
+      <button class="sw" data-k="yellow" style="--sw:#F3D34A" aria-pressed="false"><i></i>Yellow</button>
+      <button class="sw" data-k="black" style="--sw:#1C171F" aria-pressed="false"><i></i>Black</button>
+    </div>
+    <p class="reply" id="r0" aria-live="polite"></p>
+    <p class="hand change" id="change" hidden>(change it if you want. i'm not judging)</p>
+    <button class="btn next" id="n0" hidden>Play the game</button>
+  </section>
+
+  <!-- Round 1 -->
+  <section class="screen" id="s-q1" hidden>
+    <h2 tabindex="-1">Who asked for this website?</h2>
+    <div class="answers">
+      <button class="candy c-mint" data-reply="Correct. Zero hesitation. I like that.">I did</button>
+      <button class="candy c-lemon" data-reply="Too late. It exists now, and you're on it.">It was a joke</button>
+      <button class="candy c-lilac" data-reply="I do. I still have the chat.">I don't remember</button>
+    </div>
+    <p class="reply" id="r1" aria-live="polite"></p>
+    <button class="btn next" id="n1" hidden>Next round</button>
+  </section>
+
+  <!-- Round 2 -->
+  <section class="screen" id="s-q2" hidden>
+    <h2 tabindex="-1">Set your sass level.</h2>
+    <p class="lede">Be honest. I'll know.</p>
+    <div class="meter">
+      <p class="num" id="num" aria-hidden="true">50</p>
+      <p class="lab" id="lab">Mild. I don't buy it.</p>
+      <p class="hand dare">i dare you to pick 20</p>
+      <input type="range" id="dial" min="0" max="100" value="50" aria-label="Sass level, 0 to 100">
+      <button class="btn" id="lock">Lock it in</button>
+    </div>
+    <p class="reply" id="r2" aria-live="polite"></p>
+    <button class="btn next" id="n2" hidden>Next round</button>
+  </section>
+
+  <!-- Round 3 -->
+  <section class="screen" id="s-q3" hidden>
+    <h2 tabindex="-1">Okay, but under all that, you're actually soft-hearted. Right?</h2>
+    <div class="dodge" id="dodge">
+      <button class="btn yes" id="yes">Yes</button>
+      <button class="candy c-lilac no" id="no">No</button>
+    </div>
+    <p class="reply" id="r3" aria-live="polite"></p>
+    <button class="btn next" id="n3" hidden>Claim your prize</button>
+  </section>
+
+  <!-- Prize -->
+  <section class="screen" id="s-prize" hidden>
+    <h2 tabindex="-1">Three for three. You won.</h2>
+    <p class="lede" id="prize-hint">Scratch it. Use your finger.</p>
+    <div class="scratch">
+      <div class="prize" id="prize" aria-hidden="true">
+        <p class="prize-big">One date. On me.</p>
+        <p class="prize-small">You pick what kind.</p>
+      </div>
+      <canvas id="foil" aria-hidden="true"></canvas>
+    </div>
+    <button class="link" id="reveal">Reveal it for me</button>
+    <div class="picks" id="picks" hidden>
+      <p>Pick one.</p>
+      <div class="answers grid2">
+        <button class="candy c-lemon" data-k="coffee">Coffee</button>
+        <button class="candy c-pink" data-k="icecream">Ice cream</button>
+        <button class="candy c-mint" data-k="dinner">Dinner</button>
+        <button class="candy c-lilac" data-k="call">Late-night call</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final -->
+  <section class="screen" id="s-final" hidden>
+    <h2 tabindex="-1">It's official.</h2>
+    <div class="ticket">
+      <div class="ticket-main">
+        <p class="ticket-kicker">Good for one</p>
+        <p class="ticket-title" id="t-title">Coffee date</p>
+        <p class="ticket-line" id="t-line"></p>
+      </div>
+      <dl class="ticket-stub">
+        <div><dt>When</dt><dd>Your call</dd></div>
+        <div><dt>Expires</dt><dd>Never</dd></div>
+        <div><dt>Paid by</dt><dd>Me</dd></div>
+      </dl>
+    </div>
+    <p>Send me this so I know you won.</p>
+    <p class="msg" id="msg"></p>
+    <div class="actions">
+      <button class="btn" id="copy">Copy message</button>
+      <button class="link" id="again">Play again</button>
+    </div>
+    <div class="notes">
+      <p class="hand ps">p.s. the no button was never going to let you.</p>
+      <p class="hand sig">made by the one you asked. obviously.</p>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  var $ = function(s){ return document.querySelector(s); };
+  var $$ = function(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); };
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var screens = ['intro','color','q1','q2','q3','prize','final'];
+  var rounds = {q1:1,q2:2,q3:3};
+  var progress = $('#progress'), progressText = $('#progress-text'), pips = $$('.pip');
+
+  function show(name){
+    screens.forEach(function(n){ $('#s-'+n).hidden = (n !== name); });
+    var r = rounds[name];
+    progress.hidden = !r;
+    if(r){
+      progressText.textContent = 'Round ' + r + ' of 3';
+      pips.forEach(function(p,i){ p.classList.toggle('on', i < r); });
+    }
+    window.scrollTo(0,0);
+    var h = $('#s-'+name+' h1, #s-'+name+' h2');
+    if(h){ try{ h.focus({preventScroll:true}); }catch(e){} }
+    if(name === 'prize'){ requestAnimationFrame(initFoil); }
+  }
+
+  $('#play').addEventListener('click', function(){ show('color'); });
+
+  /* Her colour */
+  var root = document.documentElement, colourName = 'pink';
+  var colourReply = {
+    pink: 'Wait, I guessed right? Leaving it exactly like this.',
+    red: 'Red. That tracks.',
+    purple: 'Purple. Okay, that suits you.',
+    blue: "Blue. Didn't see that coming.",
+    green: 'Green. Interesting. Noted.',
+    yellow: 'Yellow. Sunshine with attitude, got it.',
+    black: 'Black. Of course it is.'
+  };
+  var swatches = $$('#s-color .sw');
+  swatches.forEach(function(b){
+    b.addEventListener('click', function(){
+      var k = b.getAttribute('data-k'); colourName = k;
+      if(k === 'pink') root.removeAttribute('data-pick'); else root.setAttribute('data-pick', k);
+      swatches.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      $('#r0').textContent = colourReply[k];
+      $('#change').hidden = false; $('#n0').hidden = false;
+    });
+  });
+  $('#n0').addEventListener('click', function(){ show('q1'); });
+
+  /* Round 1 */
+  var q1Buttons = $$('#s-q1 .candy');
+  q1Buttons.forEach(function(b){
+    b.addEventListener('click', function(){
+      q1Buttons.forEach(function(x){ x.disabled = true; x.classList.toggle('picked', x === b); });
+      $('#r1').textContent = b.getAttribute('data-reply');
+      $('#n1').hidden = false;
+    });
+  });
+  $('#n1').addEventListener('click', function(){ show('q2'); });
+
+  /* Round 2 */
+  var dial = $('#dial'), num = $('#num'), lab = $('#lab'), lock = $('#lock');
+  function sassLabel(v){
+    if(v <= 20) return 'An angel? Sure.';
+    if(v <= 50) return "Mild. I don't buy it.";
+    if(v <= 80) return 'Getting warmer.';
+    if(v < 100) return 'So close.';
+    return 'There it is.';
+  }
+  function setDial(v){ dial.value = v; num.textContent = v; lab.textContent = sassLabel(v); }
+  dial.addEventListener('input', function(){ setDial(+dial.value); });
+  lock.addEventListener('click', function(){
+    var start = +dial.value;
+    dial.disabled = true; lock.hidden = true;
+    function done(text){ $('#r2').textContent = text; $('#n2').hidden = false; }
+    if(start >= 100){ done('Honest. Respect.'); return; }
+    function finish(){ setDial(100); done('Yeah, no. It only goes one way. Nice try though.'); }
+    if(reduce){ finish(); return; }
+    var t0 = performance.now(), dur = 950;
+    function step(t){
+      var k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      setDial(Math.round(start + (100 - start) * e));
+      if(k < 1) requestAnimationFrame(step); else finish();
+    }
+    requestAnimationFrame(step);
+  });
+  $('#n2').addEventListener('click', function(){ show('q3'); });
+
+  /* Round 3 */
+  var area = $('#dodge'), yes = $('#yes'), no = $('#no');
+  var noLabels = ['No','Nope','Still no','Okay, maybe','Fine, yes'], noStep = 0;
+  function dodge(){
+    if(noStep >= noLabels.length - 1) return false;
+    noStep++;
+    no.textContent = noLabels[noStep];
+    var W = area.clientWidth, H = area.clientHeight, bw = no.offsetWidth, bh = no.offsetHeight;
+    var minY = yes.offsetHeight + 24, maxY = Math.max(minY, H - bh - 10), maxX = Math.max(0, W - bw);
+    var px = no.offsetLeft, py = no.offsetTop, x, y, i = 0;
+    do{
+      x = Math.random() * maxX; y = minY + Math.random() * (maxY - minY); i++;
+    }while(Math.hypot(x - px, y - py) < 90 && i < 14);
+    no.style.left = x + 'px'; no.style.top = y + 'px';
+    $('#r3').textContent = (noStep === noLabels.length - 1) ? 'There we go.' : 'It runs. Sorry.';
+    return true;
+  }
+  function sayYes(){
+    area.hidden = true;
+    $('#r3').textContent = 'Knew it. The sass is a cover. A good one, I almost bought it.';
+    $('#n3').hidden = false;
+    try{ $('#n3').focus({preventScroll:true}); }catch(e){}
+  }
+  no.addEventListener('pointerenter', function(e){ if(e.pointerType === 'mouse') dodge(); });
+  no.addEventListener('click', function(){ if(!dodge()) sayYes(); });
+  yes.addEventListener('click', sayYes);
+  $('#n3').addEventListener('click', function(){ show('prize'); });
+
+  /* Prize: scratch card */
+  var foil = $('#foil'), ctx = null, drawing = false, last = null, revealed = false, moves = 0;
+  function initFoil(){
+    revealed = false; foil.classList.remove('gone');
+    var box = {width: foil.parentElement.clientWidth, height: foil.parentElement.clientHeight};
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    foil.width = Math.max(1, Math.round(box.width * dpr));
+    foil.height = Math.max(1, Math.round(box.height * dpr));
+    ctx = foil.getContext('2d');
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = '#CFBCEF'; ctx.fillRect(0,0,box.width,box.height);
+    ctx.fillStyle = 'rgba(255,255,255,.3)';
+    for(var x = -box.height; x < box.width; x += 30){
+      ctx.beginPath();
+      ctx.moveTo(x, box.height); ctx.lineTo(x + 11, box.height);
+      ctx.lineTo(x + 11 + box.height, 0); ctx.lineTo(x + box.height, 0);
+      ctx.closePath(); ctx.fill();
+    }
+    ctx.fillStyle = '#4A0A26';
+    ctx.font = '800 17px "Hanken Grotesk", "Segoe UI", system-ui, sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('SCRATCH HERE', box.width / 2, box.height / 2);
+  }
+  function pos(e){ return {x: e.offsetX, y: e.offsetY}; }
+  function scratch(a, b){
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.lineWidth = 38; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x + .01, b.y + .01); ctx.stroke();
+  }
+  function clearedRatio(){
+    try{
+      var d = ctx.getImageData(0,0,foil.width,foil.height).data, c = 0, n = 0;
+      for(var i = 3; i < d.length; i += 4 * 23){ n++; if(d[i] === 0) c++; }
+      return n ? c / n : 0;
+    }catch(e){ return 1; }
+  }
+  foil.addEventListener('pointerdown', function(e){
+    if(revealed || !ctx) return;
+    drawing = true; last = pos(e); scratch(last, last);
+    try{ foil.setPointerCapture(e.pointerId); }catch(err){}
+    e.preventDefault();
+  });
+  foil.addEventListener('pointermove', function(e){
+    if(!drawing || revealed) return;
+    var p = pos(e); scratch(last, p); last = p;
+    if(++moves % 14 === 0 && clearedRatio() > .42) reveal();
+  });
+  function endStroke(){
+    if(!drawing) return; drawing = false;
+    if(!revealed && clearedRatio() > .42) reveal();
+  }
+  foil.addEventListener('pointerup', endStroke);
+  foil.addEventListener('pointercancel', endStroke);
+  $('#reveal').addEventListener('click', reveal);
+
+  function reveal(){
+    if(revealed) return; revealed = true; drawing = false;
+    foil.classList.add('gone');
+    $('#prize').setAttribute('aria-hidden','false');
+    $('#prize-hint').textContent = 'There you go.';
+    $('#reveal').hidden = true;
+    $('#picks').hidden = false;
+    rain();
+  }
+  function rain(){
+    if(reduce) return;
+    var colors = ['#F9A8C0','#B5E3CC','#F7E48B','#CFBCEF','#FFF5F8'];
+    var box = document.createElement('div'); box.className = 'rain'; box.setAttribute('aria-hidden','true');
+    var html = '';
+    for(var i = 0; i < 26; i++){
+      var size = 14 + Math.random() * 20, left = Math.random() * 100;
+      var dur = 1.8 + Math.random() * 1.6, delay = Math.random() * .7, rot = (Math.random() * 2 - 1) * 320;
+      html += '<svg viewBox="0 0 100 92" width="' + size.toFixed(0) + '" style="left:' + left.toFixed(1) + '%;fill:' + colors[i % colors.length] +
+        ';animation-duration:' + dur.toFixed(2) + 's;animation-delay:' + delay.toFixed(2) + 's;--r:' + rot.toFixed(0) + 'deg"><use href="#heart"/></svg>';
+    }
+    box.innerHTML = html; document.body.appendChild(box);
+    setTimeout(function(){ if(box.parentNode) box.parentNode.removeChild(box); }, 4600);
+  }
+
+  /* Picks and ticket */
+  var dates = {
+    coffee:   {title:'Coffee date',     owe:'a coffee',               line:'However long it takes you to finish it.'},
+    icecream: {title:'Ice cream date',  owe:'ice cream',              line:"Two scoops minimum. I'm not arguing."},
+    dinner:   {title:'Dinner date',     owe:'dinner',                 line:"You pick the place. I'll act like I wasn't going to suggest it."},
+    call:     {title:'Late-night call', owe:'a long late-night call', line:"Nobody hangs up first. That's the rule."}
+  };
+  var copyBtn = $('#copy'), msg = $('#msg');
+  $$('#picks .candy').forEach(function(b){
+    b.addEventListener('click', function(){
+      var d = dates[b.getAttribute('data-k')];
+      $('#t-title').textContent = d.title;
+      $('#t-line').textContent = d.line;
+      var colourLine = colourName === 'pink' ? 'My favourite colour is pink. You guessed right, so one point to you. ' : 'My favourite colour is ' + colourName + ', write it down. ';
+      msg.textContent = 'I won your game. ' + colourLine + 'You owe me ' + d.owe + '. I\u2019ll tell you when.';
+      copyBtn.textContent = 'Copy message';
+      show('final');
+    });
+  });
+  copyBtn.addEventListener('click', function(){
+    var text = msg.textContent;
+    function fallback(){
+      var ok = false;
+      try{
+        var r = document.createRange(); r.selectNodeContents(msg);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        ok = document.execCommand('copy');
+      }catch(e){}
+      copyBtn.textContent = ok ? 'Copied' : 'Text selected, copy it';
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ copyBtn.textContent = 'Copied'; }, fallback);
+    }else{ fallback(); }
+  });
+
+  /* Keep things in place when the screen size changes */
+  var lastW = window.innerWidth, resizeTimer;
+  window.addEventListener('resize', function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function(){
+      if(window.innerWidth === lastW) return;
+      lastW = window.innerWidth;
+      if(!$('#s-prize').hidden && !revealed) initFoil();
+      if(!$('#s-q3').hidden && !area.hidden && no.style.left){
+        var maxX = Math.max(0, area.clientWidth - no.offsetWidth);
+        var maxY = Math.max(0, area.clientHeight - no.offsetHeight - 10);
+        if(no.offsetLeft > maxX) no.style.left = maxX + 'px';
+        if(no.offsetTop > maxY) no.style.top = maxY + 'px';
+      }
+    }, 150);
+  });
+
+  /* Play again */
+  $('#again').addEventListener('click', function(){
+    q1Buttons.forEach(function(x){ x.disabled = false; x.classList.remove('picked'); });
+    $('#r1').textContent = ''; $('#n1').hidden = true;
+    dial.disabled = false; lock.hidden = false; setDial(50); lab.textContent = "Mild. I don't buy it.";
+    $('#r2').textContent = ''; $('#n2').hidden = true;
+    noStep = 0; no.textContent = noLabels[0]; no.style.left = ''; no.style.top = ''; area.hidden = false;
+    $('#r3').textContent = ''; $('#n3').hidden = true;
+    $('#prize').setAttribute('aria-hidden','true');
+    $('#prize-hint').textContent = 'Scratch it. Use your finger.';
+    $('#reveal').hidden = false; $('#picks').hidden = true;
+    show('intro');
+  });
+})();
+</script>
+</body>
+</html>
